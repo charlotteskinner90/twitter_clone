@@ -10,18 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//Routes
 Route::get('/', function () {
     return view('index');
 });
 
+//Route::get('/home', 'HomeController@index')->name('home');
 
-// This route generated as part of the laravel/vue github repo
-// This is safe to remove if you do not require it.
-// laravel-vue-git-code
 
-Route::get('/getUser', 'UsersController@getUser');
+// Endpoints
+Route::get('/getUsers', 'UsersController@getUsers');
 
-Auth::routes();
+Route::get('/getTweets/{handle}', 'TweetsController@getUserTweets');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/getTweets', 'TweetsController@getTweets');
