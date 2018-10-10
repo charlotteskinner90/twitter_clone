@@ -64,7 +64,7 @@ class TweetsController extends Controller
 			]);
 
 		foreach($tweets as $tweet) {
-			// Not ideal for a real life twitter app - in this case we only have a 200 or so tweets so database performance wouldnt be affected
+			// Not ideal for a real life twitter app - in this case we only have a relatively small number of tweets so database performance wouldnt be affected
 			// In a real scenario of millions of tweets, not optimal to get all of the tweets and call the database this often
 			(string) $tweet->handle = UsersController::getHandleFromId($tweet->user_id)[0]->handle;
 			(string) $tweet->age = $this->tweetAge($tweet->updated_at);
