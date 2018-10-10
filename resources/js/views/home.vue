@@ -33,12 +33,4 @@
 </script>
 
 <style scoped>
-	.container {
-		max-width: 600px;
-		width: 92%;
-		margin: 0 auto;
-	}
-	.container h1 {
-		color: #fff;
-	}
 </style>

@@ -26,8 +26,6 @@
 	.tweet {
 		position: relative;
 		background-color: #fff;
-		width: 500px;
-		float: left;
 		padding: 20px 15px 10px;
 		margin: 10px 0;
 		border-radius: 4px;

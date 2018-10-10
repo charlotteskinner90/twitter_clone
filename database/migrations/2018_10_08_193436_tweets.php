@@ -17,8 +17,8 @@
 				$table->increments('tweet_id')->unique();
 				$table->uuid('user_id');
 				$table->string('body', 265);
-				$table->json('liked_by')->nullable();
-				$table->json('retweeted_by')->nullable();
+				$table->string('liked_by')->nullable();
+				$table->string('retweeted_by')->nullable();
 				$table->bigInteger('like_count')->default(0);
 				$table->bigInteger('retweet_count')->default(0);
 				$table->dateTime('updated_at');

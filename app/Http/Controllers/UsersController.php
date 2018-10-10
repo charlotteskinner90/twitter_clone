@@ -5,59 +5,39 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use DateTime;
+use Illuminate\Support\Facades\DB;
 
 class UsersController extends Controller
 {
-
-	private $first_name;
-	private $last_name;
-	private $email;
-	private $date_of_birth;
-	private $password;
-	private $handle;
-
 	/**
 	 * UsersController constructor.
 	 */
 	public function __construct() {
-		$this->first_name;
-		$this->last_name;
-		$this->email;
-		$this->date_of_birth;
-		$this->password;
-		$this->handle;
-	}
 
-	/**
-	 * @param Request $request
-	 */
-	public function createAccount(Request $request) {
-			(string) $this->first_name     = $request->get('first_name');
-			(string) $this->last_name      = $request->get('last_name');
-			(string) $this->email          = $request->get('email');
-			(string) $this->date_of_birth  = $request->get('date_of_birth');
-			(string) $this->password       = $request->get('password');
-			(string) $repeated_password    = $request->get('repeated_password');
-			(string) $this->handle         = $request->get('handle');
-			$this->verifyHandle();
-			$this->verifyPassword();
 	}
 
 	/**
 	 * @param Request $request
 	 * @return array
 	 */
+	// When the signup form is created later, date of birth will be a required field.
+	// All users will eventually have an age associated.
 	public function getUsers(Request $request) {
 		$users = User::all();
 		$usersWithAge = $this->generateAge($users);
 		return $usersWithAge;
 	}
 
+	/**
+	 * @param $users
+	 * @return array
+	 */
+	// Works out age of user. Gets user date_of_birth, then takes the datetime of now and finds the diff
 	private function generateAge($users) {
 		$returnedUsers = [];
 		foreach($users as $user) {
-			$datetime1 = new DateTime($user['date_of_birth']);
-			$datetime2 = new DateTime(now());
+			(string) $datetime1 = new DateTime($user['date_of_birth']);
+			(string) $datetime2 = new DateTime(now());
 			$interval = $datetime1->diff($datetime2);
 			$user['age'] = $interval->y;
 			array_push($returnedUsers, $user);
@@ -65,11 +45,26 @@ class UsersController extends Controller
 		return $returnedUsers;
 	}
 
-	private function verifyHandle() {
-
+	/**
+	 * @param $user_id
+	 * @return \Illuminate\Support\Collection
+	 */
+	// Opens user_settings table, matches the user_id of the user with the user_id in the table
+	// Returns the handle of that matched user
+	public static function getHandleFromId($user_id) {
+		return DB::table('user_settings')
+			->where('user_id', '=', $user_id)
+			->get(['handle']);
 	}
 
-	private function verifyPassword() {
-
+	/**
+	 * @param $handle
+	 * @return \Illuminate\Support\Collection
+	 */
+	// Does the opposite to the above getHandleFromId function. Takes the handle and gets the user_id
+	public static function getIdFromHandle($handle) {
+		return DB::table('user_settings')
+			->where('handle', '=', $handle)
+			->get(['user_id']);
 	}
 }

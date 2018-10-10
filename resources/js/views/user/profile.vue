@@ -36,14 +36,6 @@
 </script>
 
 <style scoped>
-	.container {
-		max-width: 600px;
-		width: 92%;
-		margin: 0 auto;
-	}
-	.container h1 {
-		color: #fff;
-	}
 	.return-to-homepage {
 		color: #FFFFFF;
 		text-decoration: none;
@@ -51,25 +43,5 @@
 	}
 	.return-to-homepage:hover {
 		text-decoration: underline;
-	}
-	.tweet {
-		position: relative;
-		background-color: #fff;
-		width: 500px;
-		float: left;
-		padding: 20px 15px 10px;
-		margin: 10px 0;
-		border-radius: 4px;
-		font-size: 14px;
-	}
-	.tweet-date {
-		position: absolute;
-		right: 15px;
-		top: 10px;
-	}
-	.tweet-handle {
-		position: absolute;
-		left: 15px;
-		top: 10px;
 	}
 </style>
