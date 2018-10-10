@@ -19,8 +19,8 @@
 				$table->string('body', 265);
 				$table->json('liked_by')->nullable();
 				$table->json('retweeted_by')->nullable();
-				$table->bigInteger('like_count');
-				$table->bigInteger('retweet_count');
+				$table->bigInteger('like_count')->default(0);
+				$table->bigInteger('retweet_count')->default(0);
 				$table->dateTime('updated_at');
 				$table->dateTime('created_at');
 			});

@@ -1,14 +1,22 @@
 <template>
-	<div class="tweet-container">
-		<div class="tweet" v-for="tweet in tweets">
-			<p>{{tweet.body}}</p>
+	<div class="container">
+		<h1>Latest tweets</h1>
+		<div class="tweet-container">
+			<template v-for="tweet in tweets">
+				<tweet v-bind:user_tweet="tweet"></tweet>
+			</template>
 		</div>
 	</div>
 </template>
 
 <script>
+	import tweet from '../components/tweets/tweet';
+
 	export default {
 		name: "home",
+		components: {
+			tweet
+		},
 		data () {
 			return {
 				tweets: []
@@ -25,17 +33,12 @@
 </script>
 
 <style scoped>
-	.tweet-container {
+	.container {
 		max-width: 600px;
 		width: 92%;
 		margin: 0 auto;
 	}
-	.tweet {
-		background-color: #fff;
-		width: 500px;
-		float: left;
-		padding: 10px 15px;
-		margin: 10px 0;
-		border-radius: 4px;
+	.container h1 {
+		color: #fff;
 	}
 </style>
